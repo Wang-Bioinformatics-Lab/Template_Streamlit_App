@@ -11,9 +11,12 @@ ENV PATH=$CONDA_DIR/bin:$PATH
 # Adding to bashrc
 RUN echo "export PATH=$CONDA_DIR:$PATH" >> ~/.bashrc
 
+# Forcing version of Python
+RUN mamba create -n py39 python=3.9 -y
+
 COPY requirements.txt .
-RUN pip install -r requirements.txt
-RUN pip install git+https://github.com/Wang-Bioinformatics-Lab/GNPSDataPackage.git
+RUN /bin/bash -c 'source activate py39 && pip install -r requirements.txt'
+#duplicate the above line to run any other commands in the created environment
 
 COPY . /app
 WORKDIR /app
