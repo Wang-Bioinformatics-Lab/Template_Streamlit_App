@@ -19,7 +19,10 @@ html('<script async defer data-website-id="<your_website_id>" src="https://analy
 
 # TODO: Bump version
 app_version = "2025-07-17"
-git_hash = get_git_short_rev()
+try:
+    git_hash = get_git_short_rev()
+except:
+    git_hash = "unknown"
 repo_link = "https://github.com/YOUR-USER/YOUR-REPO"
 
 
